@@ -1,0 +1,34 @@
+<nav id="nav">
+    <div class="pull-right">
+        <a class="button button-danger">Don't click here  !!</a>
+    </div>
+</nav>
+
+X
+a {
+    background-color : purple;
+}
+
+#nav div.pul-right a.button {
+    background-color: orangered;
+}
+
+
+=> What will happen : 
+The orange red will be applied because of the specifity rules .
+Check the lecture about the selector force calculation :
+   > a selector : 
+   (inline, IDs, classes, Elements)
+   (0, 0, 0, 1)
+
+   > #nav div.pull-right a.button 
+   (inline, IDS, classes, Elemets)
+   (1, 0, 2, 2)
+
+This how the sepecifity is calculated . So now you can compare both of them .
+
+If we have equality , the last specified css will be applied
+
+ have an effect GO to X .
+
+ So to undertand what will be applied you need to compare the notes (Calculation) of the places where the selector could 

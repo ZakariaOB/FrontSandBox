@@ -1,0 +1,43 @@
+- Use 'lead' class to make a text content more prominent
+   - font-size: 1.25rem
+   - font-weight: 300
+
+- Justify : Be even on bith side => text-justify
+- Responsive text-align
+    > text-sm-right : Right on small and larger
+    > text-md-right : Right on medium and larger
+    > text-lg-right : Right on large and larger
+    > text-xl-right : Right on xLarge and larger
+
+- d-inline => Make an element an inline element
+
+   
+- Inline elements:
+   respect left & right margins and padding, but not top & bottom
+   cannot have a width and height set
+   allow other elements to sit to their left and right.
+   see very important side notes on this here.
+
+- Block elements:
+   respect all of those
+   force a line break after the block element
+   acquires full-width if width not defined
+
+- Inline-block elements:
+   allow other elements to sit to their left and right
+   respect top & bottom margins and padding
+   respect height and width
+
+
+- Responsive floating :
+   float-sm-right : float on small screens or larger
+   Same for : float-lg-right / float-xl-left ....
+
+- clearfix : To clear the float
+
+- w-25 : Width 25%
+
+
+
+
+

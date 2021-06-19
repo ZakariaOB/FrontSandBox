@@ -1,0 +1,438 @@
+
+================================================================================
+FIRST SECTION
+================================================================================
+
+
+- Viewport : The visible part of the website .
+
+- Img background cover : Cover the entire area
+
+- clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  It's using the viewport height ; If we resize the browser window it will change automatically
+  according to the viewport which is the visible part of te browser window .
+
+- Relative positioning: The element creates its own coordinate axes, 
+  at a location offset from the viewport coordinate axis. It is Part of document flow but shifted.
+
+- Absolute positioning: An element searches for the 
+  nearest available coordinate axes among its parent elements. 
+  The element is then positioned by specifying 
+  offsets from this coordinate axis. It is removed from document normal flow.
+
+- video 10 : Building a complex animated button => To be done later 
+
+
+================================================================================
+How CSS works => GREAT CHAPTER SHOULD BE REVIEWED PERIODICALLY
+================================================================================
+
+- How a page works
+  Load html => Parse html => Document object model (DOM)
+                  |
+                Load css => Resolve conflicting declarations (cascade) => CSS object model 
+
+  DOM + CSS object model => Render tree
+
+- Cascade : Process of combining different stylesheet and resolving conflicts between different Css rules
+  and declarations , when more than one rule applies to a certain element .
+
+- Priority 
+  Author : Css written by the author 
+  User : User change directly in the browser
+  Browser (User agent) : What the browser set 
+
+- Importance > Specificity > Source order (Review section 14 VERY VERY IMPORTANT !!)
+
+- Pseudo element example => p::first-line
+
+- IMPORTANCE > SPECIFICITY > SOURCE ORDER
+
+- Specifity (More to less important)
+  * Inline styles
+  * IDS
+  * Classes, pseudo classes, attribute
+  * Elements, pseudo elemnts
+
+- Recheck the specifity sample : If you have the same rule applied inside a class and 
+  a pseudo class the pseudo class will be ignored as the pseudo class will be considred as
+  a class => IMPORTANT TO CHECK THE HOVER ISSUE (LECTURE 15)
+
+- Review the specifity discussions  : Lecture_15 folder example
+
+- HOW css values are parsed (Review table lecture 16)
+  p { width: 140px } .amazing { width: 66%}
+  
+  1 Declared values 140px <> 66%
+  2 Cascaded values 66%
+  3 Specified values (defaulting if there is no cascade values) 66%
+  4 Computed values (Converting relative to absolute)
+  5 Used values 184.4 px
+  6 Actual values (Sometimes some rounding) 185px
+
+- em and rem are alwyas related to the parent font size .
+- font-size default value : 16px.
+- 1.5 rem => relative unit (1.5 * 16px = 24px computed)
+- rem is always relative to the root font size .
+- % font => the parent font size 
+- % length => % of the parent (width or height)
+- em (font) : parent computed font size .
+- em(length): padding, heights or width will use computed font size of the parent element .
+- rem : root font size (Used to specify padding, margins , heights etc ... ) .
+- em and rem are good for responsive layout : Great technique and flexibily.
+- vh/vw : view port height and view port height 
+
+- Inheritance : some properties are inherited and some not.
+- Every css property must have a value .
+- The inheritance will concern the computed value
+- Properties related to text are inherited : font-size, wight etc .. .
+- inherit keyword to force inheritance on some properties .
+- 0.5rem => .5rem .
+- Good practice : font-size :100% (16px) => default font size / 10px should be 62.5% .
+- rems not applied to old browsers .
+- Whenever we can use inheritance let us use it . 
+- You can always use inherited keyword if needed => box-sizing : inherit
+
+- box-sizing: border-box => The actual width of an element will also consider the padding (The margin not considered)
+- Check the difference between : inline-block, block and inline .
+- Stacking contexts : Layers (z-index with relative positionning)
+
+- Css component driven design
+- By practice CSS will become sort of intuitive .
+- THINK > BUILD > ARCHITECT 
+- BEM : Block element modifier :
+      .blokc {}
+      .block__elemnt {}
+      .block__elemen--modifier {}
+ - 7 different folders for partial sass files and 1 main 
+   Sass file to import all other files into a compiled css stylesheet => Check this further
+   - base/, component/, layout/, pages/, themes/, abstracts/, vendors/ 
+
+- BEM : Standalone component > should be considered as a block (a button or a reusable element)
+
+================================================================================
+Introduction to css and Sass
+================================================================================
+
+- Sass is csss preprocessor
+- Sass source code will be converted to css code
+- Browser only know Css  (Other css preprocessor : Less etc ..)
+- Features : variables, Nesting , Operators, Partials and imports, Mixins, Functions, Control directives
+- Sass syntax or Scss syntax .
+
+- npm init => Will add a package.json file to use with npm
+- After that you can add the package for the Sass => npm install node-sass --save-dev (Installed as a dev dependency)
+- If we want to install jquery we will not use save-dev because it's not a tool in dev process => Check more
+- Check npm : Dev and Dev dependency .
+- Package.json will help to share the code between different parts without having to also share the dependencies 
+  all you will need is reloading those dependencies again on your side and that will do the trick .
+- Check the difference between package.json and package.json.lock !!!!
+- Basically you can start practicing the scss by using the command that will convert scss into css
+  and then include the converted css inside a page .
+- package.json is a versionning file .
+- package.json.lock is solely used to lock dependencies to a specific version number => Check more on this topic
+  once you have an available time .
+- ::afetr  => pseudo element / :hover pseudo class
+- We can use mixins or functions in Sass .
+- node-sass sass/main.scss css/style.css -w => Detect the change (-w => watch)
+
+================================================================================
+Natours project : Using advanced Css and Sass (Part 2)
+================================================================================
+
+- Partial sass file are possible . Use _base.scss as a naming convention
+- To use it , just : import "base/base"
+- Architect your app : Different folders for a better visibility
+- _button.scss will be just imported as import "components/button"
+- Float layout is still used to keep going with the legacy and browsers compatibility
+
+- &:not(:last-child) : Select everything except the last child 
+- calc() : making css calculations with multiple units
+- calc() needs to use the # : Issue while generating with sass (Have to comment it and regenerate it)
+- calc(): Watch out the space inside : calc((100% - #{$gutter-horizontal}) / 2) and not calc((100% -#{$gutter-horizontal}) / 2);
+- row heights are collapsed because of the floating : So a clear fix is needed here .
+- Clear fix : Could be done using a mixin
+- We always need to have a content for the pseudo elements , otherwise the pseudo will not appear in the page .
+- [class^="col-"] => Select any element having an attribute that starts with "col-" we can also do class*="col-"
+  as contain something .
+
+- main html selector
+- Use Emmet extension : 
+           .test => <div class="test"></div>
+           section.section-about => <section class="section-about"></section>
+- 95vh : 95 percent of the view port (percentage)
+- display: inline-block => To not take all the available space
+- transition: all .2s;  
+    &:hover {
+      transform: skewY(2deg);
+    }
+    => The transition will help to show passing from normal state to the hover one .
+- css tricks : show symbols like '&dar' / '&arr'
+- > Pseudo-classes are used to select elements according to information that you can't 
+  otherwise express using attributes, IDs or classes (or any other info available through the DOM). 
+  For example, :root, :first-child, :last-child, :lang() and :not().
+  > Pseudo-elements are mock elements that you can apply styles to selectively as part of other actual elements, 
+  but aren't themselves members of the DOM. For example, content fragments such as ::first-line and 
+  ::first-letter, or generated content such as ::before and ::after. "Pseudo-selectors" is an umbrella 
+  term used to cover both kinds of selectors (or really any selector that begins with at least one :), 
+  but it is itself meaningless, because in Selectors, pseudo-classes and pseudo-elements are two fundamentally different things.
+
+- Emmet magic : .composition>(img.composition__photo.composition__photo--p1)*3 
+- absolute position : Absolute according to the first element that has a position
+- Images width is done in % => for responsive design
+- transition: all .2s => Animation effect to switch from normal state to the hover one .
+
+- Linea icon set
+- icon fonts are a good practice and can stay compatible with Zooming .
+- Check the skewY 
+- class > * : Select the direct childs / class * : All childs . Direct childs are kind of different (First encountred childs)
+
+- margin-top: -10rem; => This is good to add some linked background effect (to link two backgrounds togther)
+- .card:hover .card__side => When the card hover we apply something on .card__side
+- Review the card component and perspective and stuff to do the animation
+- Should understand : perspective thing and how the animation was done .
+- background-blend-mode: screen => The imgae is slighlty transparent (Text inside images)
+- For compatibility reaons it's always recommanded to use the prefix : -web-kit-clip-path or Other
+- To move things up to other elements alwyas think about absolute/relative positionning
+- box-decoration-break : Define the breaking style for a text
+
+- Inline, block and inline-block : Beautiful explanation : https://alligator.io/css/display-inline-vs-inline-block/
+- The width of the main sections is usually set on %
+- To draw an entouring circle : shape-outside: circle(50% at 50% 50%) (The element should be floated) + Defined dimensions
+- shape-outside provides a way to customize this wrapping, 
+  making it possible to wrap text around complex objects rather than simple boxes.
+- -webkit-shape-outside : For compatibility reasons
+- Always put a width for images
+- To got some nice shapes , sometimes you could simply skew to have the desired shape (story component)
+- Usage of skew : you skew the parent element and then it's inside in the opposite direction : skewX(12) / skewX(-12)
+
+- To show and hide element effect by hovering we can use the opcaity (1 and switch to 0)
+- .story { &:hover &__caption { } } : As soon as the class story is hovered we apply something 
+   on caption (Beautiful and weird line) 
+- Always using transition: all .5s; while hovering to see the state chaging effect .
+- cover.co : Download videos to use as covers for your page .
+-  rgba($color-white, .6); : Create some effect on colors similar to applying an opacity in some ways .
+- Look for the usage of : object-fit: cover;
+
+- Check the color gradient technique to create an effect of two backgrounds on the same page .
+
+- &:focus:invalid => from google chrome to check validity of inputs
+- adjacent sibling : + => Coming just after an element >> &__input:placeholder-shown + &__label
+- Adjcent sibling : After the element
+- Beautiful way of adding a new radio button effect
+- &__radio-input:checked ~ &__radio-label &__radio-button::after
+    => 
+    QUITE COMPLEX BUT WORKS : When the pseudo class happens select the sibling __radio-label and then selects it's child element
+- Check more on these selectors that will somehow listen to an event
+- Real button on forms to be able to submit it
+- Ask and review the samples => Are very instructive
+
+- inline-block : don't occupy 100% of the availabe width but just what the contents needs => Check more on this
+
+- &nbsp; => Stands for white space
+- Check usage of : nav element on html
+- position fixed : Similar to absolute position but will not change it's position when scrolling 
+- linear gradient : starts from one side to other / radial-gradient: from the center 
+- Always think about the z-index to make something on top
+- z-index only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky)
+  => Check the difference between the different position types .
+- Tip : top: 6.5rem;   => This will basically define also the left automatically by fixing the right .
+        right: 6.5rem; 
+
+- display: inline-block => Very important to get padding working well.
+- In order to hide a centent : width : 0 / opacity 0 (Don't forget the width)
+- Lecture 50 > 3.16
+
+- For animation : Cubic bezier 
+- Very nice animations because of the transition coming from the click event or the focus
+- In order for ::afetr and ::before to apprear on the page we need to set their content property
+- Sass ampersand : https://css-tricks.com/the-sass-ampersand/
+- __icon {
+      &,
+      ::after {
+
+      }
+    }  => This means the icon element itself
+
+- &__checkbox:checked + &__button &__icon => When we select the checkbox:checked we select it's brother __button and 
+  then it's child __icon
+
+- > p : target elements that are direct children
+  a p : target all the p elements (Even not direct children)
+  + p : Adjent sibling , two selectors having the same parent and the second one comme immediatly 
+        after the first (Concerned)
+  ~ p : he difference is that the second selector does NOT have to immediately follow the 
+        first one means It will select all elements that is preceded by the former selector.
+- Great to understand using css to trigger events : https://stackoverflow.com/questions/13630229/can-i-have-an-onclick-effect-in-css
+  => &__checkbox:checked + &__button &__icon
+- Check : Transform origin
+
+
+- Check the interesting usage of : @include absCenter;
+- column-count / column-gap/ column-rule: 2 => check
+- It will come later for the adding of the prefixes
+
+- Anchor target : to navigate inside the same page in html .
+- display: none we cannot animate with 
+- The pop idea : It will not be visible because of the target pseudo class not applied any more . So this will
+  be removed : &:target . And the pop up will disappear .
+- We should use one transform per declaration block
+
+
+================================================================================
+Advanced responside design
+================================================================================
+- Media queries don't add any importance or specificity to selectors, so code matters - Media queries at the end -
+- 2 approachs : DESKTOP-FIRST and MOBILE-FIRST
+- No matter what you do decide always keep both desktop and mobile in mind
+- Breakpoints : Where we want to put our media queries
+- Media queries : Check @centent directive
+- We will use em in media queries (Best options because rem fail on some browsers).
+- em or rem are not affected with the root font size, at the definition it will always use the browser font size : 16px
+- For media queries : Always put the larger ones before the small ones
+- Recheck the order explanation
+- /* If screen size is more than 600px wide, set the font-size of <div> to 80px */
+  @media screen and (min-width: 600px) 
+- /* If screen size is 600px wide, or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 600px) 
+
+
+- The phone media query is smaller so it comes after the tablet
+
+- You can change a whole part of the page using media queries => section 59
+- The idea of section 59 is to keep the same css on top and copy past it and then override the changing parts 
+  and keep the unchanged ones .
+- Beautiful app for responsive design
+
+- There is more technology to do responsive images on HTML
+- Low resolution images for low resolution screens
+- srcset attribute is the one to adapt images to resolutions
+- Check reoslutions => How many pixels are used to show 1px
+- Art direction : The image depend on the sceen width
+- source in html for images : Set the source if the size is below a certain value => media="(max-width: 37.5em)"
+- Always put the src in csae the brwoser does not understand the srcset
+
+- @media (min-resolution: 192dpi) => using media queries with resolutions
+- @media (min-resolution: 192dpi) and (min_width: 600px) : target multiple conditions
+
+- caniuse.com : Check if we can use somr css properties before go to production .
+
+- Browser support to check if we use or not a property
+- Review the browser support part
+- Clip path is not supported => Think of a different 
+
+- Overflow : hidden => If applied to an image it will get rid of the image part bigger than the container part .
+
+- Lecture 65
+
+- To do : The simple css build process
+
+
+================================================================================
+Flex box
+================================================================================
+
+- The main idea behind flox box is to give the container the ability to expand and to shrink elements
+  to best use all the availabe space .
+- Logical way to align elements
+- Makes the life so much easier
+- First block to consider is the flex container
+- Container properties 
+  > flex-direction : row | row-reverse | column | column-reverse
+  > flex-wrap : nowarp | wrap | wrap-reverse
+  > justify-content : flex-start | flex-end | center | space-between | space-around | space-evenly
+  > align-items : stretch | flex-start | flex-end | center | baseline
+  > align-content : flex-start | flex-end | center | space-between | space-around
+
+- Item properties 
+  > align-self : auto | stretch | flex-start | flex-end | center | baseline (Override the align-items prop for one element)
+  > order : 0
+  > flex-grow: 0
+  > flex-shrink : 1
+  > flex-basis: auto
+
+- / flex-start (default): items are packed toward the start line
+  / flex-end: items are packed toward to end line
+  / center: items are centered along the line
+  / space-between: items are evenly distributed in the line; first item is on the start line, last item on the end line
+  / space-around: items are evenly distributed in the line with equal space around them
+  / space-evenly: items are distributed so that the spacing between any two adjacent alignment subjects, 
+    before the first alignment subject, and after the last alignment subject is the same)
+
+- justify-content => Main axis // align-items => Current cross axis
+- align items default values => stretch
+- base-line : align the text inside the items
+- flex-direction : column (The roles of align-items and justify-content will be reversed)
+- You can also order the items using the : Order property
+
+- flex-grow : !!! Very important !!! A flex container distributes free space to its items (proportionally 
+  to their flex grow factor) to fill the containers, or shrinks them (proportionally to their flex shrink factor) 
+  to prevent overflow.
+- Items when put on a flex container will have their width . flex-basis give the possibility to give them a width .
+- Even flex-basis set , the elements will starts descrease in size .
+- The flex-shrink CSS property sets the flex shrink factor of a flex item. 
+  If the size of all flex items is larger than the flex container, items shrink to fit according to flex-shrink.
+  In use, flex-shrink is used alongside the other flex properties flex-grow and flex-basis, and normally 
+  defined using the flex shorthand.
+- Great : https://www.freecodecamp.org/news/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053/
+- Items could not shrink less than their initial with ????
+
+- flex-wrap applied to a container will help to wrap the elements not inside the container . After a certain dgree elements will
+  start wrapping .
+- flex-wrap is useful on responsive design .
+- align-items => Align elements / align-content => Align the content
+- align-items effect the alignment of items on the current line.
+  align-content effects the alignment accross lines of a flex-container. 
+  This means that this property has no effect on single-line containers.
+
+- Why using css variables => Check reasons
+- :root / like * but with high specifity
+
+- Best practice : Using Svs over icon fonts
+- SVG : Scalable font graphics
+- Using : icomoon.io
+- sprit file is what we use to get all the svgs using one http request
+- use xlink:href => Only valid on a webserver
+- Check the usage of : nav element
+- Inhertit keyword with inputs elements => To recheck
+
+- align-self: stretch => This will make it possible for the navigation icons to the right to take the
+  available space vertically .
+- Spcae between is AWSEOME
+
+- Check the usage of currentColor => Seems like a good deal (fill: currentColor)
+- You can apply the display flex to : &__link:link, &__link:visited
+- cubic-bezier => to recheck
+- cubic-bezier => It starts really slow and accelerates
+- We can apply the z-index on &__link:link, &__link:visited (Animation of links on Trillo)
+- z-index always needs a : position: relative to work
+
+- An image should always be a block or an inline block to avoid white spaces inside it .
+- margin-auto : with flex box can be used to create some space
+
+- Using current color is nice trick wit hover => it will update automatically the border put to color currentColor once 
+  the color in hover is updated .
+- Recheck the inheritance of the font-size 
+- Check font-weight 
+- Very nice trick for the ratings 
+   > display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+- You can use that to specify a specifc intial width : (flex : 0 0 60%; / remaining part : flex : 1)
+- By default align-items => stretch
+- Check usage of masks
+- To overlap => simply use a negative margin
+
+- Remember to push something to the edge using : margin-auto: right
+
+- Figures are perfect for reviews 
+- You can use html entities directlty in css
+- You can define some kind of postions (Relative, absolute) between child and parent
+- Z-INDEX WILL NOT WORK WITHOUT SETTING A POSITION
+- Section 85
+
+
+
+
+

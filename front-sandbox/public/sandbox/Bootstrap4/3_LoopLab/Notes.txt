@@ -1,0 +1,17 @@
+- ! to generate some default html content
+- d-none d-lg-block => This will not be shown by default and will be shown 
+  as a block on large screens .
+- d-flex will help to use flexbox with bootstrap
+- btn-block : this will go all the way the container
+- py : Padding top and bottom
+- px : Padding right and left
+- You can just put col without mentionning md-2 or anything else
+- col-md-6*2 : Will generate 2
+- img-fluid : Changing it's side depending on the container
+- col-md-6 : This normally should be 6 on medium screens and above . On the small ones
+  this should automatically become a col-12 I think => To check later
+- col-lg-8 d-none d-lg-block : will take the priority on disply block
+- order-2 / order-1 : This is a beautiful concept you can simply play
+  with columns orders using those .
+- Check what is : data-target
+- Try to understand the scroll spy example : Seems a good one

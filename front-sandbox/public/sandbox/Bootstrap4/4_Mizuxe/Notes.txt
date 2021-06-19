@@ -1,0 +1,54 @@
+- You can use sass with npm as done on Natours (Great to have those notes)
+
+- For a background image to take all an available space :
+  #showcase {
+    position: relative;
+    background: url('../img/mountains.jpg');
+    min-height: 600px;
+    .primary-overlay {
+        background: $primary-overlay;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+- Don't forget the Js for bootstrap to work properly : Always import it in order to all to work
+  properly .
+
+- You can adpat the size of a text using media queries 
+   => Text : Do what you dream of ..
+
+- !default is used often in Bootstrap Sass. It is similar to a reverse !important. 
+   All of Bootstraps Variables are set using !default to allow the developer to further 
+   customize bootstrap. With !default sass will only define a variable if it 
+   has not already been set.
+
+- npm install bootstrap@4.6.0 --save-dev
+
+- npm dependencies and devDependencies 
+https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies
+
+- Basically it's possible to override the bootstrap default theme by using the offcial docs
+  - install bootstrap using npm
+  - before import bootstrap just change the desired values : Example $primary
+  - And then import bootstrap
+
+- mb-resp : Margin bottom responsive : This is used to add a responsive margin on bottom 
+  under 768px .
+
+- class="img-fluid rounded-circle w-50 mb-3" to directlty add the desired style to an image .
+- .card:hover  => Hover event 
+
+- Specify a background color for every <p> element that is the second child of its parent, 
+  counting from the last child:
+  p:nth-last-child(2) 
+  {
+    background: red;
+  }
+
+- You can always think about the smooth scroll
+
+- Understand the spy scrolling

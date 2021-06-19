@@ -1,0 +1,19 @@
+- The carousel is already working on bootstrap you need just to understand it
+
+Embed video
+
+- Nice trick to embed any video : https://www.youtube.com/embed/8c9yOlPVpak 
+
+- The crossorigin attribute is a CORS settings attribute. For classic scripts, 
+  it controls whether error information will be exposed, when the script is obtained 
+  from other origins.For module scripts, it controls the credentials mode used for 
+  cross-origin requests.
+
+- The ekkolightbox will help you to create the galllery of Glozom . You can click on it
+  and check the details .
+
+- We can always hide the horizontal overflow : body: overflow-x: hidden 
+
+- We can use slick slider for sliding .
+
+- With a negative margin you can get the image to go up

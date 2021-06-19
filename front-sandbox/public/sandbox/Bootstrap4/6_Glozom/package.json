@@ -1,0 +1,15 @@
+{
+  "name": "glozom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
+  },
+  "author": "Zakaria Boukhris",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^4.6.0",
+    "node-sass": "^5.0.0"
+  }
+}
